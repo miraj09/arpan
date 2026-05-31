@@ -1,6 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { X, ShoppingCart } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import type { CartItem } from "./types";
 
 interface Props {
@@ -87,9 +88,13 @@ export default function CartDrawer({
             <div className="bg-primary/10 rounded-xl p-3 text-xs text-center text-primary font-medium">
               🌿 {t("impact", { count: impactCount })}
             </div>
-            <button className="w-full py-3 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors">
+            <Link
+              href="/checkout"
+              onClick={onClose}
+              className="block w-full text-center py-3 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors"
+            >
               {t("checkout")} — ${totalPrice}
-            </button>
+            </Link>
           </div>
         )}
       </div>

@@ -55,7 +55,7 @@ export default function SiteFooter() {
               {[Instagram, Twitter, Facebook].map((Icon, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href="https://www.facebook.com/arpanuhdp"
                   className="p-2.5 bg-background/10 hover:bg-background/20 rounded-xl transition-colors"
                 >
                   <Icon className="w-4 h-4" />

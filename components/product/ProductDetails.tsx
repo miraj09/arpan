@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
   Heart,
@@ -23,6 +23,7 @@ import {
 import type { Product } from "@/components/homepage/types";
 import { BADGE_COLORS, PRODUCTS } from "@/components/homepage/data";
 import { PRODUCT_DETAILS } from "./productData";
+import { PRODUCT_DETAILS_BN } from "./productData.bn";
 import Navbar from "@/components/homepage/Navbar";
 import CartDrawer from "@/components/homepage/CartDrawer";
 import type { CartItem } from "@/components/homepage/types";
@@ -43,8 +44,19 @@ interface Props {
 
 export default function ProductDetails({ product, related }: Props) {
   const t = useTranslations("ProductDetails");
-  const details = PRODUCT_DETAILS[product.id];
+  const locale = useLocale();
 
+  // ── Locale-aware content ──────────────────────────────────────────────────
+  const bnData = locale === "bn" ? PRODUCT_DETAILS_BN[product.id] : null;
+  const details = bnData ?? PRODUCT_DETAILS[product.id];
+  const displayName = bnData?.name ?? product.name;
+  const displayImpact = bnData?.impact ?? product.impact;
+
+  /** Return the localized name for any product ID (used in related cards) */
+  const localName = (p: Product) =>
+    locale === "bn" ? (PRODUCT_DETAILS_BN[p.id]?.name ?? p.name) : p.name;
+
+  // ── Guarantee 4 related products ─────────────────────────────────────────
   const displayRelated: Product[] = (() => {
     if (related.length >= 4) return related.slice(0, 4);
     const same = PRODUCTS.filter(
@@ -54,6 +66,7 @@ export default function ProductDetails({ product, related }: Props) {
     return [...same, ...other].slice(0, 4);
   })();
 
+  // ── UI state ──────────────────────────────────────────────────────────────
   const [quantity, setQuantity] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("description");
@@ -158,15 +171,16 @@ export default function ProductDetails({ product, related }: Props) {
             {product.category}
           </Link>
           <span>/</span>
+          {/* displayName so breadcrumb shows Bangla name in bn locale */}
           <span className="text-foreground normal-case font-medium truncate max-w-[220px]">
-            {product.name}
+            {displayName}
           </span>
         </nav>
       </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Gallery */}
+          {/* ── Gallery ──────────────────────────────────────────────────── */}
           <div className="space-y-3">
             <div
               className={`relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br ${product.gradient} select-none`}
@@ -234,7 +248,8 @@ export default function ProductDetails({ product, related }: Props) {
                 ))}
               </div>
             </div>
-            {/* Thumbnails */}
+
+            {/* Thumbnail strip */}
             <div className="flex gap-2">
               {OVERLAYS.map((overlay, i) => (
                 <button
@@ -258,14 +273,17 @@ export default function ProductDetails({ product, related }: Props) {
             </div>
           </div>
 
-          {/* Product info */}
+          {/* ── Product info ──────────────────────────────────────────────── */}
           <div className="space-y-6">
             <p className="text-xs font-bold text-primary uppercase tracking-widest">
               {product.category}
             </p>
+
+            {/* displayName — shows Bangla name in bn locale */}
             <h1 className="text-3xl sm:text-4xl font-black text-foreground leading-tight">
-              {product.name}
+              {displayName}
             </h1>
+
             <div className="flex items-center gap-3">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, j) => (
@@ -286,6 +304,7 @@ export default function ProductDetails({ product, related }: Props) {
                 {product.reviews} {t("reviews")}
               </a>
             </div>
+
             <div className="flex items-baseline gap-3 flex-wrap">
               <span className="text-4xl font-black text-foreground">
                 ${product.price}
@@ -302,9 +321,13 @@ export default function ProductDetails({ product, related }: Props) {
                 </>
               )}
             </div>
+
+            {/* details.description — Bangla text in bn locale */}
             <p className="text-muted-foreground leading-relaxed text-sm">
               {details.description.split(".").slice(0, 2).join(".") + "."}
             </p>
+
+            {/* details.features — Bangla list in bn locale */}
             <ul className="space-y-2.5">
               {details.features.map((f) => (
                 <li key={f} className="flex items-start gap-2.5 text-sm">
@@ -313,6 +336,8 @@ export default function ProductDetails({ product, related }: Props) {
                 </li>
               ))}
             </ul>
+
+            {/* displayImpact — Bangla impact text in bn locale */}
             <div className="flex items-center gap-2.5 bg-primary/10 border border-primary/15 rounded-xl px-4 py-3">
               <Leaf className="w-4 h-4 text-primary flex-shrink-0" />
               <div>
@@ -320,11 +345,14 @@ export default function ProductDetails({ product, related }: Props) {
                   {t("yourPurchaseFunds")}{" "}
                 </span>
                 <span className="text-xs text-muted-foreground">
-                  {product.impact}
+                  {displayImpact}
                 </span>
               </div>
             </div>
+
             <div className="border-t border-border" />
+
+            {/* Quantity + CTA */}
             <div ref={ctaRef} className="space-y-4">
               <div className="flex items-center gap-4">
                 <span className="text-sm font-semibold text-foreground">
@@ -375,6 +403,7 @@ export default function ProductDetails({ product, related }: Props) {
                 </button>
               </div>
             </div>
+
             <div className="bg-muted/50 rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {TRUST.map(({ Icon, text }) => (
                 <div
@@ -389,7 +418,7 @@ export default function ProductDetails({ product, related }: Props) {
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* ── Tabs ─────────────────────────────────────────────────────────── */}
         <div id="reviews" className="mt-20">
           <div className="flex border-b border-border overflow-x-auto">
             {TABS.map(({ key, label }) => (
@@ -407,7 +436,9 @@ export default function ProductDetails({ product, related }: Props) {
               </button>
             ))}
           </div>
+
           <div className="py-10">
+            {/* Full Bangla description in bn locale */}
             {activeTab === "description" && (
               <div className="max-w-2xl">
                 <p className="text-muted-foreground leading-relaxed">
@@ -415,6 +446,8 @@ export default function ProductDetails({ product, related }: Props) {
                 </p>
               </div>
             )}
+
+            {/* Bangla spec labels + values in bn locale */}
             {activeTab === "details" && (
               <div className="max-w-lg">
                 <dl className="divide-y divide-border rounded-2xl overflow-hidden border border-border">
@@ -432,8 +465,10 @@ export default function ProductDetails({ product, related }: Props) {
                 </dl>
               </div>
             )}
+
             {activeTab === "reviews" && (
               <div className="space-y-5 max-w-2xl">
+                {/* Rating summary */}
                 <div className="flex items-center gap-6 bg-muted/40 rounded-2xl p-5 mb-8">
                   <div className="text-center flex-shrink-0">
                     <p className="text-5xl font-black text-foreground">
@@ -471,6 +506,8 @@ export default function ProductDetails({ product, related }: Props) {
                     ))}
                   </div>
                 </div>
+
+                {/* Bangla reviews in bn locale (where provided in productData.bn.ts) */}
                 {details.reviews.map((review, i) => (
                   <div
                     key={i}
@@ -516,7 +553,7 @@ export default function ProductDetails({ product, related }: Props) {
           </div>
         </div>
 
-        {/* Related Products */}
+        {/* ── Related Products ─────────────────────────────────────────────── */}
         <div className="mt-16 pt-14 border-t border-border">
           <h2 className="text-2xl sm:text-3xl font-black text-foreground mb-10 uppercase tracking-wide">
             <span className="text-primary">{t("relatedProducts")}</span>
@@ -550,8 +587,9 @@ export default function ProductDetails({ product, related }: Props) {
                 <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1">
                   {p.category}
                 </p>
+                {/* localName(p) — shows Bangla name in bn locale */}
                 <p className="font-semibold text-foreground leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors text-sm">
-                  {p.name}
+                  {localName(p)}
                 </p>
                 <div className="flex items-center gap-0.5 mb-2">
                   {[...Array(5)].map((_, j) => (
@@ -594,8 +632,9 @@ export default function ProductDetails({ product, related }: Props) {
       >
         <div className="flex items-center gap-3">
           <div className="flex-1 min-w-0">
+            {/* displayName in sticky bar too */}
             <p className="text-sm font-bold text-foreground truncate">
-              {product.name}
+              {displayName}
             </p>
             <p className="text-sm text-primary font-black">${product.price}</p>
           </div>
