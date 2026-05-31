@@ -1,0 +1,168 @@
+{
+  "AnnouncementBar": {
+    "text": "🌿 Free shipping on orders over $75 · Every purchase funds real healthcare",
+    "link": "Learn more →"
+  },
+  "Navbar": {
+    "shop": "Shop",
+    "collections": "Collections",
+    "mission": "Our Mission",
+    "impact": "Impact",
+    "blog": "Blog",
+    "searchPlaceholder": "Search…",
+    "shopNow": "Shop Now"
+  },
+  "LanguageSwitcher": {
+    "en": "EN",
+    "bn": "বাংলা"
+  },
+  "CartDrawer": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continueShopping": "Continue shopping →",
+    "remove": "Remove",
+    "total": "Total",
+    "impact": "Your order funds healthcare for {count}+ people",
+    "checkout": "Checkout"
+  },
+  "Hero": {
+    "badge": "Shop with Purpose. Save Lives.",
+    "line1": "Every",
+    "line2": "Purchase",
+    "line3": "Heals.",
+    "description": "Discover 800+ premium ethical products. Every purchase directly funds quality healthcare for underserved communities through UHDP.",
+    "shopNow": "Shop Now",
+    "ourMission": "Our Mission",
+    "shipping": "Free shipping $75+",
+    "secure": "Secure checkout",
+    "returns": "Easy 30-day returns",
+    "impactTitle": "Today's Impact",
+    "impactSubtitle": "consultations funded today",
+    "impactGoal": "74% of daily goal reached"
+  },
+  "StatsBar": {
+    "customers": "Happy Customers",
+    "funded": "Healthcare Funded",
+    "countries": "Countries Served",
+    "products": "Ethical Products"
+  },
+  "Categories": {
+    "label": "Browse by Category",
+    "heading": "Shop with Intention",
+    "description": "Every category supports a different healthcare program. Find products that align with your values.",
+    "shopNow": "Shop now",
+    "wellness": "Wellness & Self-Care",
+    "fashion": "Sustainable Fashion",
+    "home": "Artisan Home Goods",
+    "nutrition": "Organic Nutrition",
+    "beauty": "Ethical Beauty",
+    "gifts": "Gifts & Editions"
+  },
+  "FeaturedProducts": {
+    "label": "Featured Collection",
+    "heading": "Products with Purpose",
+    "viewAll": "View all",
+    "all": "All",
+    "wellness": "Wellness",
+    "nutrition": "Nutrition",
+    "fashion": "Fashion",
+    "beauty": "Beauty",
+    "home": "Home",
+    "stationery": "Stationery",
+    "quickAdd": "Quick Add to Cart",
+    "added": "✓ Added to cart!"
+  },
+  "ImpactSection": {
+    "label": "Our Impact",
+    "heading1": "Your Cart",
+    "heading2": "Changes Lives",
+    "description": "Every rupee from your purchase flows directly into verified healthcare programs. We work with UHDP to guarantee transparency and real-world impact.",
+    "step1Title": "You Shop",
+    "step1Desc": "Choose from 800+ ethically-sourced products with verified impact",
+    "step2Title": "We Fund",
+    "step2Desc": "30% of every sale goes to verified UHDP healthcare programs",
+    "step3Title": "Lives Change",
+    "step3Desc": "Track the real-time impact of your purchases in your account",
+    "cta": "See Our Impact Report",
+    "metric1Label": "Medical Consultations Funded",
+    "metric2Label": "Months of Medication Provided",
+    "metric3Label": "Children Received Nutrition",
+    "metric4Label": "Dental Procedures Covered"
+  },
+  "Testimonials": {
+    "label": "Community Love",
+    "heading": "What Our Shoppers Say",
+    "bought": "Bought:"
+  },
+  "TrustStrip": {
+    "shippingTitle": "Free Shipping",
+    "shippingDesc": "On orders over $75",
+    "paymentsTitle": "Secure Payments",
+    "paymentsDesc": "256-bit SSL encryption",
+    "returnsTitle": "Easy Returns",
+    "returnsDesc": "30-day return policy",
+    "ethicalTitle": "Certified Ethical",
+    "ethicalDesc": "100% verified partners"
+  },
+  "Newsletter": {
+    "badge": "Limited Early Access",
+    "heading1": "Join 50,000+",
+    "heading2": "Conscious Shoppers",
+    "description": "Early access to new collections, impact stories, and exclusive member-only discounts.",
+    "placeholder": "Your email address",
+    "cta": "Get Access",
+    "subscribed": "✓ Subscribed!",
+    "disclaimer": "No spam, ever. Unsubscribe anytime."
+  },
+  "Footer": {
+    "tagline": "Arpan by UHDP — a marketplace where every purchase funds quality healthcare for those who need it most.",
+    "shopTitle": "Shop",
+    "newArrivals": "New Arrivals",
+    "bestsellers": "Bestsellers",
+    "wellness": "Wellness",
+    "sustainableFashion": "Sustainable Fashion",
+    "giftSets": "Gift Sets",
+    "aboutTitle": "About",
+    "ourMission": "Our Mission",
+    "impactReport": "Impact Report",
+    "uhdpPartnership": "UHDP Partnership",
+    "ethicalSourcing": "Ethical Sourcing",
+    "press": "Press",
+    "supportTitle": "Support",
+    "shippingPolicy": "Shipping Policy",
+    "returns": "Returns",
+    "faq": "FAQ",
+    "contactUs": "Contact Us",
+    "trackOrder": "Track Order",
+    "copyright": "© 2026 Arpan by UHDP. All rights reserved. Making healthcare accessible.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Settings"
+  },
+  "ProductDetails": {
+    "home": "Home",
+    "shop": "Shop",
+    "reviews": "reviews",
+    "off": "% off",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to cart!",
+    "share": "Share",
+    "wishlist": "Add to wishlist",
+    "yourPurchaseFunds": "Your purchase funds:",
+    "delivery": "Free delivery on orders over $75",
+    "secureCheckout": "Secure checkout · 256-bit SSL",
+    "freeReturns": "Free returns within 30 days",
+    "shipsIn": "Ships in 2–4 business days",
+    "tabDescription": "Description",
+    "tabDetails": "Details",
+    "tabReviews": "Reviews",
+    "verifiedPurchase": "✓ Verified purchase",
+    "relatedProducts": "Related Products",
+    "added": "Added!",
+    "addToCartShort": "Add to Cart"
+  },
+  "ScrollToTop": {
+    "label": "Scroll to top"
+  }
+}
