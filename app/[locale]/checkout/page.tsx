@@ -6,21 +6,30 @@ import { CheckCircle2, Lock, ShieldCheck, Truck } from "lucide-react";
 import Navbar from "@/components/homepage/Navbar";
 import SiteFooter from "@/components/homepage/SiteFooter";
 import { PRODUCTS } from "@/components/homepage/data";
+import type { CartItem } from "@/components/homepage/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const CHECKOUT_ITEMS = [
-  { productId: 1, quantity: 1 },
-  { productId: 3, quantity: 2 },
-] as const;
-
 export default function CheckoutPage() {
   const t = useTranslations("Checkout");
   const [scrolled, setScrolled] = useState(false);
   const [placed, setPlaced] = useState(false);
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error("Failed to load cart from localStorage:", error);
+    }
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,14 +38,7 @@ export default function CheckoutPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const items = useMemo(
-    () =>
-      CHECKOUT_ITEMS.map((row) => {
-        const product = PRODUCTS.find((p) => p.id === row.productId)!;
-        return { ...product, quantity: row.quantity };
-      }),
-    [],
-  );
+  const items = cart;
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,

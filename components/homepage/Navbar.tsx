@@ -23,21 +23,19 @@ function LanguageSwitcher() {
     <div className="flex items-center gap-0.5 text-xs font-semibold border border-border rounded-lg overflow-hidden">
       <button
         onClick={() => toggle("en")}
-        className={`px-2.5 py-1.5 transition-colors ${
-          locale === "en"
+        className={`px-2.5 py-1.5 transition-colors ${locale === "en"
             ? "bg-primary text-primary-foreground"
             : "text-muted-foreground hover:text-foreground hover:bg-muted"
-        }`}
+          }`}
       >
         {t("en")}
       </button>
       <button
         onClick={() => toggle("bn")}
-        className={`px-2.5 py-1.5 transition-colors ${
-          locale === "bn"
+        className={`px-2.5 py-1.5 transition-colors ${locale === "bn"
             ? "bg-primary text-primary-foreground"
             : "text-muted-foreground hover:text-foreground hover:bg-muted"
-        }`}
+          }`}
       >
         {t("bn")}
       </button>
@@ -48,22 +46,22 @@ function LanguageSwitcher() {
 export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = useTranslations("Navbar");
+  const locale = useLocale();
 
   const NAV = [
-    { key: "shop", label: t("shop") },
-    { key: "collections", label: t("collections") },
-    { key: "mission", label: t("mission") },
-    { key: "impact", label: t("impact") },
-    { key: "blog", label: t("blog") },
+    { key: "shop", label: t("shop"), href: "/#products" },
+    { key: "collections", label: t("collections"), href: "/#collections" },
+    { key: "mission", label: t("mission"), href: "/about" },
+    { key: "impact", label: t("impact"), href: "/#impact" },
+    { key: "blog", label: t("blog"), href: "/#blog" },
   ];
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border"
           : "bg-background"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -73,14 +71,14 @@ export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
               <img src="/arpan-logo.png" alt="Arpan" className="h-10 w-auto" />
             </Link>
             <nav className="hidden lg:flex items-center gap-6">
-              {NAV.map(({ key, label }) => (
-                <a
+              {NAV.map(({ key, label, href }) => (
+                <Link
                   key={key}
-                  href="#"
+                  href={href}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -107,7 +105,7 @@ export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
             <LanguageSwitcher />
 
             <Link
-              href="/#products"
+              href={`/${locale}#products`}
               className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors"
             >
               {t("shopNow")}
@@ -131,15 +129,15 @@ export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
       {menuOpen && (
         <div className="lg:hidden border-t border-border bg-background">
           <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-            {NAV.map(({ key, label }) => (
-              <a
+            {NAV.map(({ key, label, href }) => (
+              <Link
                 key={key}
-                href="#"
+                href={href}
                 onClick={() => setMenuOpen(false)}
                 className="py-2.5 px-3 text-sm font-medium rounded-lg text-foreground hover:bg-muted transition-colors"
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

@@ -80,6 +80,27 @@ export default function ProductDetails({ product, related }: Props) {
   const [showFab, setShowFab] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
 
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error("Failed to load cart from localStorage:", error);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (error) {
+      console.error("Failed to save cart to localStorage:", error);
+    }
+  }, [cart]);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);

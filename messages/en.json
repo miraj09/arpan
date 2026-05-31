@@ -162,6 +162,133 @@
     "added": "Added!",
     "addToCartShort": "Add to Cart"
   },
+  "About": {
+    "hero": {
+      "tagline": "What is Arpan?",
+      "badge": "Live with Dignity",
+      "description": "Arpan is a humanitarian and livelihood-based initiative creating employment opportunities for underprivileged, disabled, and vulnerable individuals, enabling them to earn independently and live with dignity."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "tagline": "Arpan means: Not charity, but opportunity.",
+      "objective1": "Make underprivileged and disabled individuals self-reliant",
+      "objective2": "Help them earn through dignified work instead of depending on charity",
+      "objective3": "Ensure their respectful inclusion in society",
+      "objective4": "Use a portion of generated income to support medical treatment for poor patients"
+    },
+    "coreObjectives": {
+      "title": "Core Objectives",
+      "item1": {
+        "title": "Self-Reliance",
+        "description": "Empowering underprivileged and disabled individuals to become financially independent through dignified work opportunities."
+      },
+      "item2": {
+        "title": "Dignified Work",
+        "description": "Creating employment that replaces dependency on charity with respect, skill development, and fair compensation."
+      },
+      "item3": {
+        "title": "Social Inclusion",
+        "description": "Building a respectful place for artisans in society, recognizing their skills and contributions."
+      },
+      "item4": {
+        "title": "Healthcare Impact",
+        "description": "Allocating profits to fund medical support for underserved communities in need."
+      },
+      "item5": {
+        "title": "Community Building",
+        "description": "Creating a network of artisans, customers, and partners united by purpose and shared values."
+      }
+    },
+    "activities": {
+      "title": "Key Activities",
+      "item1": {
+        "title": "Creating Employment Opportunities",
+        "description": "We provide work to vulnerable and disabled individuals, enabling them to earn and support their families.",
+        "examples": {
+          "0": "Nakshi Kantha (traditional embroidery)",
+          "1": "Jamdani & handcrafted products",
+          "2": "Jute bags and other handicrafts",
+          "3": "Textile and home goods production"
+        }
+      },
+      "item2": {
+        "title": "Skill Development & Training",
+        "description": "For those without prior skills, we offer comprehensive training programs to build expertise and confidence.",
+        "examples": {
+          "0": "Hands-on craft training",
+          "1": "Quality control education",
+          "2": "Business basics for artisans",
+          "3": "Design and innovation workshops"
+        }
+      },
+      "item3": {
+        "title": "Product Collection & Development",
+        "description": "We collect artisan-made products and work to improve design, quality, and market appeal.",
+        "examples": {
+          "0": "Quality verification",
+          "1": "Design enhancement",
+          "2": "Packaging development",
+          "3": "Market research and feedback"
+        }
+      },
+      "item4": {
+        "title": "Marketing & Sales",
+        "description": "We connect artisan products to conscious consumers through multiple channels.",
+        "examples": {
+          "0": "Online platforms (Facebook, Website)",
+          "1": "Retail partnerships and showrooms",
+          "2": "Influencer collaborations",
+          "3": "Community events and markets"
+        }
+      },
+      "item5": {
+        "title": "Fair Income Distribution",
+        "description": "We ensure fair wages for artisans and reinvest profits into healthcare programs.",
+        "examples": {
+          "0": "Competitive artisan wages",
+          "1": "Transparent profit sharing",
+          "2": "Healthcare fund allocation",
+          "3": "Long-term partnership stability"
+        }
+      }
+    },
+    "artisanGallery": {
+      "title": "Meet Our Artisans",
+      "subtitle": "Real people, real impact",
+      "artisan1": {
+        "name": "Priya Kumar",
+        "title": "Master Embroidery Artist",
+        "story": "Specializing in Nakshi Kantha embroidery for over 15 years, Priya trains young artisans and creates stunning traditional pieces."
+      },
+      "artisan2": {
+        "name": "Rajesh Patel",
+        "title": "Traditional Craft Artist",
+        "story": "An accomplished artist whose framed artworks showcase the beauty of traditional techniques combined with contemporary vision."
+      },
+      "artisan3": {
+        "name": "Meera Singh",
+        "title": "Textile & Home Goods Designer",
+        "story": "Creating beautiful handwoven textiles and home décor items that blend heritage techniques with modern aesthetics."
+      },
+      "artisan4": {
+        "name": "Community of Arpan",
+        "title": "United by Purpose",
+        "story": "Over 200+ artisans and craftspeople working together to create meaningful products that fund healthcare."
+      }
+    },
+    "impact": {
+      "title": "Our Impact",
+      "metric1": "Artisans Empowered",
+      "metric2": "Products Created",
+      "metric3": "Healthcare Funded",
+      "metric4": "Lives Impacted"
+    },
+    "cta": {
+      "title": "Every Purchase Supports Our Artisans",
+      "description": "When you buy from Arpan, you're not just getting a beautiful, ethical product—you're directly supporting artisans and funding healthcare for those in need.",
+      "button": "Shop with Purpose"
+    }
+  },
   "Checkout": {
     "label": "Secure Checkout",
     "title": "Complete Your Order",
