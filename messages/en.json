@@ -1,4 +1,9 @@
 {
+  "WelcomeBanner": {
+    "title": "Welcome to Arpan",
+    "close": "Close banner",
+    "alt": "Arpan — Live with Dignity. UHDP opportunity for people with disabilities."
+  },
   "AnnouncementBar": {
     "text": "🌿 Free shipping on orders over $75 · Every purchase funds real healthcare",
     "link": "Learn more →"
@@ -30,7 +35,8 @@
     "line1": "Every",
     "line2": "Purchase",
     "line3": "Heals.",
-    "description": "Discover 800+ premium ethical products. Every purchase directly funds quality healthcare for underserved communities through UHDP.",
+    "descriptionLead": "Discover 100+ premium ethical products. Every purchase creates real impact.",
+    "descriptionDetail": "Proceeds support burn victims in burn units and children in crisis through UHDP (United Humanitarian Development Program)—emergency care, treatment, and assistance for communities in need.",
     "shopNow": "Shop Now",
     "ourMission": "Our Mission",
     "shipping": "Free shipping $75+",
@@ -84,6 +90,7 @@
     "step3Title": "Lives Change",
     "step3Desc": "Track the real-time impact of your purchases in your account",
     "cta": "See Our Impact Report",
+    "storiesLink": "See real stories",
     "metric1Label": "Medical Consultations Funded",
     "metric2Label": "Months of Medication Provided",
     "metric3Label": "Children Received Nutrition",
@@ -175,6 +182,29 @@
       "objective2": "Help them earn through dignified work instead of depending on charity",
       "objective3": "Ensure their respectful inclusion in society",
       "objective4": "Use a portion of generated income to support medical treatment for poor patients"
+    },
+    "impactStories": {
+      "label": "Real Impact",
+      "title": "Healthcare That Changes Lives",
+      "intro": "Through our partnership with UHDP (United Humanitarian Development Program), a portion of every Arpan purchase helps fund medical care for patients who cannot afford treatment. These stories reflect the real difference your support makes.",
+      "viewFullImage": "View full image",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "story1": {
+        "badge": "Story 01",
+        "title": "Recovery Through Dedicated Care",
+        "caption": "Access to burn treatment and follow-up care",
+        "description": "With timely medical intervention and ongoing support from UHDP healthcare teams, this child received the treatment needed for recovery. Every purchase on Arpan helps extend similar care to more families in need.",
+        "imageAlt": "Before and after photos showing a child's recovery from burn injuries through medical treatment"
+      },
+      "story2": {
+        "badge": "Story 02",
+        "title": "Care With Dignity",
+        "caption": "UHDP non-profit medical support",
+        "description": "UHDP workers provide hands-on medical support to children and families who lack access to affordable healthcare. Arpan channels shop proceeds into this network so vulnerable patients receive treatment with respect and compassion.",
+        "imageAlt": "UHDP caregiver holding a child receiving medical support"
+      },
+      "cta": "Shop to Support Healthcare"
     },
     "coreObjectives": {
       "title": "Core Objectives",

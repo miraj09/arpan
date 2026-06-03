@@ -46,9 +46,10 @@ export default function Hero({
               <span className="block text-primary">{t("line2")}</span>
               <span className="block">{t("line3")}</span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed">
-              {t("description")}
-            </p>
+            <div className="space-y-3 text-lg sm:text-xl text-muted-foreground max-w-md leading-relaxed">
+              <p>{t("descriptionLead")}</p>
+              <p>{t("descriptionDetail")}</p>
+            </div>
 
             <div className="flex flex-wrap gap-4">
               <Link
@@ -111,7 +112,7 @@ export default function Hero({
                       className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-all"
                     >
                       <Heart
-                        className={`w-3 h-3 ${wishlist.includes(product.id) ? "fill-rose-500 text-rose-500" : "text-gray-500"}`}
+                        className={`w-3 h-3 ${wishlist.includes(product.id) ? "fill-primary text-primary" : "text-muted-foreground"}`}
                       />
                     </button>
                   </Link>
@@ -127,7 +128,7 @@ export default function Hero({
                       </span>
                       <button
                         onClick={() => onAddToCart(product)}
-                        className={`text-[10px] px-2.5 py-1 rounded-full font-bold transition-all ${addedId === product.id ? "bg-emerald-500 text-white scale-110" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
+                        className={`text-[10px] px-2.5 py-1 rounded-full font-bold transition-all ${addedId === product.id ? "bg-primary text-primary-foreground scale-110" : "bg-primary text-primary-foreground hover:bg-primary/90"}`}
                       >
                         {addedId === product.id ? "✓" : "+ Add"}
                       </button>

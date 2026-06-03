@@ -26,7 +26,7 @@ export default function Testimonials() {
                 {[...Array(item.rating)].map((_, j) => (
                   <Star
                     key={j}
-                    className="w-4 h-4 fill-amber-400 text-amber-400"
+                    className="w-4 h-4 fill-accent text-accent"
                   />
                 ))}
               </div>

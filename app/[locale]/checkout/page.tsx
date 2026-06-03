@@ -74,7 +74,7 @@ export default function CheckoutPage() {
         {placed ? (
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
-              <div className="inline-flex items-center gap-2 text-emerald-600 font-semibold">
+              <div className="inline-flex items-center gap-2 text-primary font-semibold">
                 <CheckCircle2 className="w-5 h-5" />
                 {t("successTag")}
               </div>

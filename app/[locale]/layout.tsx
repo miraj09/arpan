@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
-import "../globals.css";
-
-const geist = Geist({ subsets: ["latin"] });
+import { HtmlLang } from "@/components/html-lang";
 
 export const metadata: Metadata = {
   title: "Arpan — Shop with Purpose",
-  description: "Discover premium ethical products. Every purchase funds quality healthcare through UHDP.",
+  description:
+    "Discover premium ethical products. Every purchase funds quality healthcare through UHDP.",
   icons: { icon: "/favicon.ico" },
 };
 
@@ -29,13 +27,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="bg-background">
-      <body className={`${geist.className} font-sans antialiased`}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
-        </NextIntlClientProvider>
-        {process.env.NODE_ENV === "production" && <Analytics />}
-      </body>
-    </html>
+    <>
+      <HtmlLang locale={locale} />
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        {children}
+      </NextIntlClientProvider>
+      {process.env.NODE_ENV === "production" && <Analytics />}
+    </>
   );
 }

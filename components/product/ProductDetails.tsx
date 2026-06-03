@@ -226,15 +226,15 @@ export default function ProductDetails({ product, related }: Props) {
                   className="p-2.5 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors shadow-sm"
                 >
                   {copied ? (
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                    <CheckCircle className="w-4 h-4 text-primary" />
                   ) : (
-                    <Share2 className="w-4 h-4 text-gray-700" />
+                    <Share2 className="w-4 h-4 text-foreground" />
                   )}
                 </button>
                 <button
                   onClick={() => setWishlisted(!wishlisted)}
                   aria-label={t("wishlist")}
-                  className={`p-2.5 rounded-full backdrop-blur-sm transition-colors shadow-sm ${wishlisted ? "bg-rose-500 text-white" : "bg-white/90 hover:bg-white text-gray-700"}`}
+                  className={`p-2.5 rounded-full backdrop-blur-sm transition-colors shadow-sm ${wishlisted ? "bg-primary text-primary-foreground" : "bg-white/90 hover:bg-white text-foreground"}`}
                 >
                   <Heart
                     className={`w-4 h-4 ${wishlisted ? "fill-white" : ""}`}
@@ -246,14 +246,14 @@ export default function ProductDetails({ product, related }: Props) {
                 aria-label="Previous"
                 className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white shadow-sm transition-all hover:scale-110 active:scale-95"
               >
-                <ChevronLeft className="w-4 h-4 text-gray-700" />
+                <ChevronLeft className="w-4 h-4 text-foreground" />
               </button>
               <button
                 onClick={nextThumb}
                 aria-label="Next"
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white shadow-sm transition-all hover:scale-110 active:scale-95"
               >
-                <ChevronRight className="w-4 h-4 text-gray-700" />
+                <ChevronRight className="w-4 h-4 text-foreground" />
               </button>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
                 {OVERLAYS.map((_, i) => (
@@ -310,7 +310,7 @@ export default function ProductDetails({ product, related }: Props) {
                 {[...Array(5)].map((_, j) => (
                   <Star
                     key={j}
-                    className={`w-4 h-4 ${j < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-muted"}`}
+                    className={`w-4 h-4 ${j < Math.floor(product.rating) ? "fill-accent text-accent" : "text-muted"}`}
                   />
                 ))}
               </div>
@@ -335,7 +335,7 @@ export default function ProductDetails({ product, related }: Props) {
                   <span className="text-xl text-muted-foreground line-through">
                     ${product.originalPrice}
                   </span>
-                  <span className="text-sm font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full">
+                  <span className="text-sm font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
                     {discount}
                     {t("off")}
                   </span>
@@ -400,7 +400,7 @@ export default function ProductDetails({ product, related }: Props) {
               <div className="flex gap-3">
                 <button
                   onClick={addToCart}
-                  className={`flex-1 py-3.5 font-bold rounded-2xl transition-all flex items-center justify-center gap-2 text-sm ${addedToCart ? "bg-emerald-500 text-white" : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 active:scale-95"}`}
+                  className={`flex-1 py-3.5 font-bold rounded-2xl transition-all flex items-center justify-center gap-2 text-sm ${addedToCart ? "bg-primary text-primary-foreground" : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 active:scale-95"}`}
                 >
                   {addedToCart ? (
                     <>
@@ -416,10 +416,10 @@ export default function ProductDetails({ product, related }: Props) {
                 <button
                   onClick={() => setWishlisted(!wishlisted)}
                   aria-label={t("wishlist")}
-                  className={`p-3.5 rounded-2xl border-2 transition-all ${wishlisted ? "border-rose-300 bg-rose-50 text-rose-500" : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary"}`}
+                  className={`p-3.5 rounded-2xl border-2 transition-all ${wishlisted ? "border-primary/40 bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary"}`}
                 >
                   <Heart
-                    className={`w-5 h-5 ${wishlisted ? "fill-rose-500" : ""}`}
+                    className={`w-5 h-5 ${wishlisted ? "fill-primary" : ""}`}
                   />
                 </button>
               </div>
@@ -499,7 +499,7 @@ export default function ProductDetails({ product, related }: Props) {
                       {[...Array(5)].map((_, j) => (
                         <Star
                           key={j}
-                          className={`w-3.5 h-3.5 ${j < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-muted"}`}
+                          className={`w-3.5 h-3.5 ${j < Math.floor(product.rating) ? "fill-accent text-accent" : "text-muted"}`}
                         />
                       ))}
                     </div>
@@ -513,10 +513,10 @@ export default function ProductDetails({ product, related }: Props) {
                         <span className="text-xs text-muted-foreground w-3">
                           {star}
                         </span>
-                        <Star className="w-3 h-3 text-amber-400 flex-shrink-0" />
+                        <Star className="w-3 h-3 text-accent flex-shrink-0" />
                         <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-amber-400 rounded-full"
+                            className="h-full bg-accent rounded-full"
                             style={{
                               width:
                                 star === 5 ? "75%" : star === 4 ? "20%" : "5%",
@@ -545,7 +545,7 @@ export default function ProductDetails({ product, related }: Props) {
                               {review.name}
                             </p>
                             {review.verified && (
-                              <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded-full font-semibold">
+                              <span className="text-[10px] text-primary bg-primary/10 border border-primary/20 px-1.5 py-0.5 rounded-full font-semibold">
                                 {t("verifiedPurchase")}
                               </span>
                             )}
@@ -559,7 +559,7 @@ export default function ProductDetails({ product, related }: Props) {
                         {[...Array(5)].map((_, j) => (
                           <Star
                             key={j}
-                            className={`w-3.5 h-3.5 ${j < review.rating ? "fill-amber-400 text-amber-400" : "text-muted"}`}
+                            className={`w-3.5 h-3.5 ${j < review.rating ? "fill-accent text-accent" : "text-muted"}`}
                           />
                         ))}
                       </div>
@@ -602,7 +602,7 @@ export default function ProductDetails({ product, related }: Props) {
                     aria-label={t("wishlist")}
                     className="absolute top-3 right-3 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95"
                   >
-                    <Heart className="w-3.5 h-3.5 text-gray-600" />
+                    <Heart className="w-3.5 h-3.5 text-muted-foreground" />
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1">
@@ -616,7 +616,7 @@ export default function ProductDetails({ product, related }: Props) {
                   {[...Array(5)].map((_, j) => (
                     <Star
                       key={j}
-                      className={`w-3 h-3 ${j < Math.floor(p.rating) ? "fill-amber-400 text-amber-400" : "text-muted"}`}
+                      className={`w-3 h-3 ${j < Math.floor(p.rating) ? "fill-accent text-accent" : "text-muted"}`}
                     />
                   ))}
                   <span className="text-xs text-muted-foreground ml-1">
@@ -661,7 +661,7 @@ export default function ProductDetails({ product, related }: Props) {
           </div>
           <button
             onClick={addToCart}
-            className={`px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 flex-shrink-0 ${addedToCart ? "bg-emerald-500 text-white" : "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95"}`}
+            className={`px-5 py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 flex-shrink-0 ${addedToCart ? "bg-primary text-primary-foreground" : "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95"}`}
           >
             {addedToCart ? (
               <>

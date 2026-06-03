@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname, Link } from "@/i18n/navigation";
-import { ShoppingCart, Search, Menu, X, Globe } from "lucide-react";
+import { ShoppingCart, Search, Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface Props {
   totalItems: number;
@@ -102,10 +103,12 @@ export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
               )}
             </button>
 
+            <ThemeToggle />
+
             <LanguageSwitcher />
 
             <Link
-              href={`/${locale}#products`}
+              href={`/#products`}
               className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors"
             >
               {t("shopNow")}
@@ -139,6 +142,10 @@ export default function Navbar({ totalItems, onCartOpen, scrolled }: Props) {
                 {label}
               </Link>
             ))}
+            <div className="pt-2 px-3 flex items-center gap-2">
+              <ThemeToggle />
+              <span className="text-sm text-muted-foreground">Theme</span>
+            </div>
           </nav>
         </div>
       )}

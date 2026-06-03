@@ -14,7 +14,8 @@ import Testimonials      from "@/components/homepage/Testimonials";
 import TrustStrip        from "@/components/homepage/TrustStrip";
 import Newsletter        from "@/components/homepage/Newsletter";
 import SiteFooter        from "@/components/homepage/SiteFooter";
-import ScrollToTopFab    from "@/components/homepage/ScrollToTopFab";
+import ScrollToTopFab       from "@/components/homepage/ScrollToTopFab";
+import WelcomeBannerPopup   from "@/components/homepage/WelcomeBannerPopup";
 
 export default function HomePage() {
   const [cart, setCart]         = useState<CartItem[]>([]);
@@ -89,6 +90,7 @@ export default function HomePage() {
       </main>
       <SiteFooter />
       <ScrollToTopFab show={showFab} />
+      <WelcomeBannerPopup />
     </div>
   );
 }

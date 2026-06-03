@@ -99,7 +99,7 @@ export default function FeaturedProducts({
                   className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full z-10 opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95"
                 >
                   <Heart
-                    className={`w-4 h-4 ${wishlist.includes(product.id) ? "fill-rose-500 text-rose-500" : "text-gray-500"}`}
+                    className={`w-4 h-4 ${wishlist.includes(product.id) ? "fill-primary text-primary" : "text-muted-foreground"}`}
                   />
                 </button>
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-all flex items-end p-4 z-10">
@@ -108,7 +108,7 @@ export default function FeaturedProducts({
                       e.preventDefault();
                       onAddToCart(product);
                     }}
-                    className={`w-full py-2.5 text-sm font-bold rounded-xl translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ${addedId === product.id ? "bg-emerald-500 text-white" : "bg-foreground text-background hover:bg-foreground/90"}`}
+                    className={`w-full py-2.5 text-sm font-bold rounded-xl translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ${addedId === product.id ? "bg-primary text-primary-foreground" : "bg-foreground text-background hover:bg-foreground/90"}`}
                   >
                     {addedId === product.id ? t("added") : t("quickAdd")}
                   </button>
@@ -129,7 +129,7 @@ export default function FeaturedProducts({
                   {[...Array(5)].map((_, j) => (
                     <Star
                       key={j}
-                      className={`w-3.5 h-3.5 ${j < Math.floor(product.rating) ? "fill-amber-400 text-amber-400" : "text-muted"}`}
+                      className={`w-3.5 h-3.5 ${j < Math.floor(product.rating) ? "fill-accent text-accent" : "text-muted"}`}
                     />
                   ))}
                   <span className="text-xs text-muted-foreground ml-1">
@@ -153,7 +153,7 @@ export default function FeaturedProducts({
                   </div>
                   <button
                     onClick={() => onAddToCart(product)}
-                    className={`p-2.5 rounded-xl transition-all ${addedId === product.id ? "bg-emerald-500 text-white scale-110" : "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-110"}`}
+                    className={`p-2.5 rounded-xl transition-all ${addedId === product.id ? "bg-primary text-primary-foreground scale-110" : "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-110"}`}
                   >
                     <ShoppingCart className="w-4 h-4" />
                   </button>

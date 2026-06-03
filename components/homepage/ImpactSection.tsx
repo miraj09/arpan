@@ -1,5 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 
 export default function ImpactSection() {
@@ -16,29 +17,29 @@ export default function ImpactSection() {
       emoji: "🏥",
       value: "2,400+",
       label: t("metric1Label"),
-      bg: "bg-rose-50 border-rose-100",
-      text: "text-rose-600",
+      bg: "bg-primary/10 border-primary/20",
+      text: "text-primary",
     },
     {
       emoji: "💊",
       value: "15,000+",
       label: t("metric2Label"),
-      bg: "bg-sky-50 border-sky-100",
-      text: "text-sky-600",
+      bg: "bg-secondary border-border",
+      text: "text-primary",
     },
     {
       emoji: "👶",
       value: "800+",
       label: t("metric3Label"),
-      bg: "bg-emerald-50 border-emerald-100",
-      text: "text-emerald-600",
+      bg: "bg-primary/10 border-primary/20",
+      text: "text-primary",
     },
     {
       emoji: "🦷",
       value: "1,200+",
       label: t("metric4Label"),
-      bg: "bg-amber-50 border-amber-100",
-      text: "text-amber-600",
+      bg: "bg-accent/25 border-accent/40",
+      text: "text-accent-foreground",
     },
   ];
 
@@ -87,12 +88,20 @@ export default function ImpactSection() {
                 </div>
               ))}
             </div>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-bold rounded-2xl hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25"
-            >
-              {t("cta")} <ArrowRight className="w-4 h-4" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <Link
+                href="/about#impact-stories"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-bold rounded-2xl hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25"
+              >
+                {t("cta")} <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/about#impact-stories"
+                className="inline-flex items-center gap-2 px-2 py-3.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+              >
+                {t("storiesLink")} <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

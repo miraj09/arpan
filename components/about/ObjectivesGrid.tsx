@@ -6,11 +6,11 @@ export default function ObjectivesGrid() {
   const t = useTranslations("About.coreObjectives");
 
   const objectives = [
-    { key: "item1", color: "from-emerald-500/10 to-emerald-500/5 border-emerald-200/50" },
-    { key: "item2", color: "from-blue-500/10 to-blue-500/5 border-blue-200/50" },
-    { key: "item3", color: "from-amber-500/10 to-amber-500/5 border-amber-200/50" },
-    { key: "item4", color: "from-rose-500/10 to-rose-500/5 border-rose-200/50" },
-    { key: "item5", color: "from-purple-500/10 to-purple-500/5 border-purple-200/50" },
+    { key: "item1", color: "from-primary/15 to-primary/5 border-primary/25" },
+    { key: "item2", color: "from-primary/10 to-secondary border-primary/20" },
+    { key: "item3", color: "from-accent/30 to-accent/10 border-accent/40" },
+    { key: "item4", color: "from-primary/12 to-accent/15 border-primary/20" },
+    { key: "item5", color: "from-secondary to-primary/5 border-border/60" },
   ];
 
   return (

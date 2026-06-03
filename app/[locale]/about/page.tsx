@@ -6,6 +6,7 @@ import Navbar from "@/components/homepage/Navbar";
 import SiteFooter from "@/components/homepage/SiteFooter";
 import HeroSection from "@/components/about/HeroSection";
 import MissionSection from "@/components/about/MissionSection";
+import ImpactStoriesSection from "@/components/about/ImpactStoriesSection";
 import ObjectivesGrid from "@/components/about/ObjectivesGrid";
 import ArtisanGallery from "@/components/about/ArtisanGallery";
 import ActivitiesSection from "@/components/about/ActivitiesSection";
@@ -47,6 +48,7 @@ export default function AboutPage() {
       <main>
         <HeroSection />
         <MissionSection />
+        <ImpactStoriesSection />
         <ObjectivesGrid />
         <ArtisanGallery />
         <ActivitiesSection />
