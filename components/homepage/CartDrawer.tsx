@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { X, ShoppingCart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { CartItem } from "./types";
+import ProductImage from "@/components/product/ProductImage";
 
 interface Props {
   cart: CartItem[];
@@ -54,9 +55,17 @@ export default function CartDrawer({
           ) : (
             cart.map((item) => (
               <div key={item.id} className="flex gap-3">
-                <div
-                  className={`w-16 h-16 rounded-xl bg-gradient-to-br ${item.gradient} flex-shrink-0`}
-                />
+                {item.image ? (
+                  <ProductImage
+                    src={item.image}
+                    alt={item.name}
+                    className="w-16 h-16 rounded-xl flex-shrink-0"
+                  />
+                ) : (
+                  <div
+                    className={`w-16 h-16 rounded-xl bg-gradient-to-br ${item.gradient ?? "from-muted to-muted"} flex-shrink-0`}
+                  />
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold truncate">{item.name}</p>
                   <p className="text-xs text-primary mt-0.5">

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import type { Product } from "./types";
 import { PRODUCTS, BADGE_COLORS } from "./data";
+import ProductImage from "@/components/product/ProductImage";
 
 interface Props {
   wishlist: number[];
@@ -94,9 +95,17 @@ export default function Hero({
                     href={`/products/${product.id}`}
                     className="block relative h-36"
                   >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${product.gradient}`}
-                    />
+                    {product.image ? (
+                      <ProductImage
+                        src={product.image}
+                        alt={product.name}
+                        className="absolute inset-0"
+                      />
+                    ) : (
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${product.gradient ?? "from-muted to-muted"}`}
+                      />
+                    )}
                     {product.badge && (
                       <span
                         className={`absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold rounded-full z-10 ${BADGE_COLORS[product.badge] ?? "bg-white text-foreground"}`}

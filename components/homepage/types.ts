@@ -7,7 +7,12 @@ export interface Product {
   rating: number;
   reviews: number;
   badge?: string;
-  gradient: string;
+  /** Thumbnail for cards, hero, and cart */
+  image: string;
+  /** Full gallery for PDP — thumbnail first, then detail shots */
+  images: string[];
+  /** Fallback when image paths are missing (e.g. stale cart items) */
+  gradient?: string;
   impact: string;
 }
 
