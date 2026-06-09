@@ -151,6 +151,11 @@
     "originalPrice": "Original price",
     "save": "Save"
   },
+  "Gallery": {
+    "label": "Photo & Video Gallery",
+    "heading": "See Our Stories",
+    "description": "Explore behind-the-scenes moments, artisan craftsmanship, and the real impact of your purchases through our curated collection of images and videos."
+  },
   "ProductDetails": {
     "home": "Home",
     "shop": "Shop",

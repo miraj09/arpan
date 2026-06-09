@@ -10,6 +10,7 @@ import StatsBar          from "@/components/homepage/StatsBar";
 import Categories        from "@/components/homepage/Categories";
 import FeaturedProducts  from "@/components/homepage/FeaturedProducts";
 import ImpactSection     from "@/components/homepage/ImpactSection";
+import GallerySection    from "@/components/homepage/GallerySection";
 import Testimonials      from "@/components/homepage/Testimonials";
 import TrustStrip        from "@/components/homepage/TrustStrip";
 import Newsletter        from "@/components/homepage/Newsletter";
@@ -84,6 +85,7 @@ export default function HomePage() {
         <Categories />
         <FeaturedProducts wishlist={wishlist} addedId={addedId} onAddToCart={addToCart} onToggleWishlist={toggleWishlist} />
         <ImpactSection />
+        <GallerySection />
         <Testimonials />
         <TrustStrip />
         <Newsletter />
