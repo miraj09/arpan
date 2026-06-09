@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Heart, Star, ShoppingCart, ChevronRight } from "lucide-react";
 import type { Product } from "./types";
 import { PRODUCTS, FILTER_TABS, TAB_KEY, BADGE_COLORS } from "./data";
 import ProductImage from "@/components/product/ProductImage";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   wishlist: number[];
@@ -23,6 +24,7 @@ export default function FeaturedProducts({
 }: Props) {
   const [activeTab, setActiveTab] = useState("All");
   const t = useTranslations("FeaturedProducts");
+  const locale = useLocale();
 
   const filtered =
     activeTab === "All"
@@ -143,11 +145,11 @@ export default function FeaturedProducts({
                 <div className="flex items-center justify-between pt-1">
                   <div className="flex items-center gap-2">
                     <span className="font-black text-foreground text-lg">
-                      ${product.price}
+                      {formatPrice(product.price, locale)}
                     </span>
                     {product.originalPrice && (
                       <span className="text-sm text-muted-foreground line-through">
-                        ${product.originalPrice}
+                        {formatPrice(product.originalPrice, locale)}
                       </span>
                     )}
                   </div>

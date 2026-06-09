@@ -146,6 +146,11 @@
     "terms": "Terms of Service",
     "cookies": "Cookie Settings"
   },
+  "Price": {
+    "currency": "BDT",
+    "originalPrice": "Original price",
+    "save": "Save"
+  },
   "ProductDetails": {
     "home": "Home",
     "shop": "Shop",

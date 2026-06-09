@@ -1,10 +1,12 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Heart, Star } from "lucide-react";
 import type { Product } from "@/components/homepage/types";
 import { BADGE_COLORS } from "@/components/homepage/data";
 import ProductImage from "./ProductImage";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   product: Product;
@@ -23,6 +25,7 @@ export default function ProductCard({
   showWishlist = false,
   isWishlisted = false,
 }: Props) {
+  const locale = useLocale();
   return (
     <Link
       href={`/products/${product.id}`}
@@ -79,10 +82,10 @@ export default function ProductCard({
           </span>
         </div>
         <div className="flex items-center gap-2 pt-1">
-          <span className="font-black text-foreground text-lg">${product.price}</span>
+          <span className="font-black text-foreground text-lg">{formatPrice(product.price, locale)}</span>
           {product.originalPrice && (
             <span className="text-sm text-muted-foreground line-through">
-              ${product.originalPrice}
+              {formatPrice(product.originalPrice, locale)}
             </span>
           )}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { CheckCircle2, Lock, ShieldCheck, Truck } from "lucide-react";
 import Navbar from "@/components/homepage/Navbar";
 import SiteFooter from "@/components/homepage/SiteFooter";
@@ -12,9 +12,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { formatPrice } from "@/lib/utils";
 
 export default function CheckoutPage() {
   const t = useTranslations("Checkout");
+  const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [placed, setPlaced] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -243,7 +245,7 @@ export default function CheckoutPage() {
                             </p>
                           </div>
                           <p className="text-sm font-semibold">
-                            ${item.price * item.quantity}
+                            {formatPrice(item.price * item.quantity, locale)}
                           </p>
                         </div>
                       ))}
@@ -254,19 +256,19 @@ export default function CheckoutPage() {
                         <span className="text-muted-foreground">
                           {t("subtotal")}
                         </span>
-                        <span>${subtotal}</span>
+                        <span>{formatPrice(subtotal, locale)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">
                           {t("shipping")}
                         </span>
                         <span>
-                          {shipping === 0 ? t("free") : `$${shipping}`}
+                          {shipping === 0 ? t("free") : formatPrice(shipping, locale)}
                         </span>
                       </div>
                       <div className="flex justify-between font-bold text-base pt-2 border-t border-border">
                         <span>{t("total")}</span>
-                        <span>${total}</span>
+                        <span>{formatPrice(total, locale)}</span>
                       </div>
                     </div>
 

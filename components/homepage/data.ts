@@ -5,8 +5,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 1,
     name: "White Rose Hand-Stitched Shirt",
-    price: 58,
-    originalPrice: 72,
+    price: 11000,
+    // originalPrice: 72,
     category: "Fashion",
     rating: 4.9,
     reviews: 47,
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 2,
     name: "Forest Green Floral Hand-Stitched Shirt",
-    price: 62,
+    price: 9690,
     category: "Fashion",
     rating: 4.8,
     reviews: 31,
@@ -39,8 +39,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 3,
     name: "Grey Embroidered Hand-Stitched Kurta",
-    price: 75,
-    originalPrice: 90,
+    price: 17070,
+    // originalPrice: 90,
     category: "Fashion",
     rating: 4.9,
     reviews: 28,

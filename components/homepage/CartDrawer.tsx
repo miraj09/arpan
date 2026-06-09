@@ -1,9 +1,10 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { X, ShoppingCart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { CartItem } from "./types";
 import ProductImage from "@/components/product/ProductImage";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   cart: CartItem[];
@@ -23,6 +24,7 @@ export default function CartDrawer({
   totalPrice,
 }: Props) {
   const t = useTranslations("CartDrawer");
+  const locale = useLocale();
   if (!isOpen) return null;
 
   const impactCount = cart.reduce((s, i) => s + i.quantity * 2, 0);
@@ -73,7 +75,7 @@ export default function CartDrawer({
                   </p>
                   <div className="flex items-center justify-between mt-2">
                     <span className="font-bold text-sm">
-                      ${item.price} × {item.quantity}
+                      BDT {item.price} × {item.quantity}
                     </span>
                     <button
                       onClick={() => onRemove(item.id)}
@@ -92,7 +94,7 @@ export default function CartDrawer({
           <div className="p-6 border-t border-border space-y-4">
             <div className="flex justify-between items-center text-lg font-bold">
               <span>{t("total")}</span>
-              <span>${totalPrice}</span>
+              <span>{formatPrice(totalPrice, locale)}</span>
             </div>
             <div className="bg-primary/10 rounded-xl p-3 text-xs text-center text-primary font-medium">
               🌿 {t("impact", { count: impactCount })}
@@ -102,7 +104,7 @@ export default function CartDrawer({
               onClick={onClose}
               className="block w-full text-center py-3 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors"
             >
-              {t("checkout")} — ${totalPrice}
+              {t("checkout")} — {formatPrice(totalPrice, locale)}
             </Link>
           </div>
         )}

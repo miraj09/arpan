@@ -1,5 +1,5 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
   Heart,
@@ -12,6 +12,7 @@ import {
 import type { Product } from "./types";
 import { PRODUCTS, BADGE_COLORS } from "./data";
 import ProductImage from "@/components/product/ProductImage";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   wishlist: number[];
@@ -27,6 +28,7 @@ export default function Hero({
   onToggleWishlist,
 }: Props) {
   const t = useTranslations("Hero");
+  const locale = useLocale();
   const heroProducts = PRODUCTS.slice(0, 4);
 
   return (
@@ -84,8 +86,8 @@ export default function Hero({
           </div>
 
           {/* Right: floating product showcase */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="relative space-y-6">
+            <div className="grid grid-cols-2 gap-4 relative">
               {heroProducts.map((product, i) => (
                 <div
                   key={product.id}
@@ -133,7 +135,7 @@ export default function Hero({
                     </Link>
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-sm font-black text-primary">
-                        ${product.price}
+                        {formatPrice(product.price, locale)}
                       </span>
                       <button
                         onClick={() => onAddToCart(product)}
@@ -145,26 +147,26 @@ export default function Hero({
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Floating impact card */}
-            <div className="absolute -bottom-6 -left-6 bg-card border border-border shadow-2xl rounded-2xl p-4 w-52">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center">
-                  <Heart className="w-4 h-4 text-primary" />
+              
+              {/* Floating impact card */}
+              <div className="absolute bottom-8 right-12 bg-card border border-border shadow-2xl rounded-2xl p-4 w-56">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-xs font-bold">{t("impactTitle")}</span>
                 </div>
-                <span className="text-xs font-bold">{t("impactTitle")}</span>
+                <p className="text-3xl font-black text-primary">247</p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {t("impactSubtitle")}
+                </p>
+                <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
+                  <div className="h-full w-3/4 bg-primary rounded-full" />
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-1">
+                  {t("impactGoal")}
+                </p>
               </div>
-              <p className="text-3xl font-black text-primary">247</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                {t("impactSubtitle")}
-              </p>
-              <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
-                <div className="h-full w-3/4 bg-primary rounded-full" />
-              </div>
-              <p className="text-[10px] text-muted-foreground mt-1">
-                {t("impactGoal")}
-              </p>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef } from "react";
+import { useLocale } from "next-intl";
 import {
   Heart,
   Star,
@@ -16,6 +17,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import type { Product } from "@/components/homepage/types";
 import type { ProductDetail } from "../productData";
+import { formatPrice } from "@/lib/utils";
 
 interface Props {
   product: Product;
@@ -67,6 +69,7 @@ const ProductBuyBox = forwardRef<HTMLDivElement, Props>(function ProductBuyBox(
   },
   ctaRef,
 ) {
+  const locale = useLocale();
   const shortDescription =
     details.description.split(".").slice(0, 2).join(".") + ".";
   const previewFeatures = details.features.slice(0, 3);
@@ -106,11 +109,11 @@ const ProductBuyBox = forwardRef<HTMLDivElement, Props>(function ProductBuyBox(
       </div>
 
       <div className="flex items-baseline gap-3 flex-wrap">
-        <span className="text-4xl font-black text-foreground">${product.price}</span>
+        <span className="text-4xl font-black text-foreground">{formatPrice(product.price, locale)}</span>
         {product.originalPrice && (
           <>
             <span className="text-xl text-muted-foreground line-through">
-              ${product.originalPrice}
+              {formatPrice(product.originalPrice, locale)}
             </span>
             <span className="text-sm font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full">
               {discount}
@@ -175,7 +178,7 @@ const ProductBuyBox = forwardRef<HTMLDivElement, Props>(function ProductBuyBox(
               </>
             ) : (
               <>
-                <ShoppingCart className="w-4 h-4" /> {addToCartLabel} · $
+                <ShoppingCart className="w-4 h-4" /> {addToCartLabel} · BDT
                 {product.price * quantity}
               </>
             )}

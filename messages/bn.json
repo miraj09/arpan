@@ -146,6 +146,11 @@
     "terms": "সেবার শর্তাবলী",
     "cookies": "কুকি সেটিংস"
   },
+  "Price": {
+    "currency": "টাকা",
+    "originalPrice": "আসল দাম",
+    "save": "সাশ্রয় করুন"
+  },
   "ProductDetails": {
     "home": "হোম",
     "shop": "দোকান",
