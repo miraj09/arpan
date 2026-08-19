@@ -7,6 +7,6 @@ export const config = {
   matcher: [
     "/",
     "/(en|bn)/:path*",
-    "/((?!_next|_vercel|favicon\\.ico|arpan-logo\\.png|arpan-hero\\.png|.*\\..*).*)",
+    "/((?!api|_next|_vercel|favicon\\.ico|arpan-logo\\.png|arpan-hero\\.png|.*\\..*).*)",
   ],
 };

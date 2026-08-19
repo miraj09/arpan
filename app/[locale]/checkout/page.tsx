@@ -1,17 +1,17 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { CheckCircle2, Lock, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, CheckCircle2, Landmark, Lock, ShieldCheck, Truck } from "lucide-react";
 import Navbar from "@/components/homepage/Navbar";
 import SiteFooter from "@/components/homepage/SiteFooter";
-import { PRODUCTS } from "@/components/homepage/data";
 import type { CartItem } from "@/components/homepage/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { formatPrice } from "@/lib/utils";
 
 export default function CheckoutPage() {
@@ -19,7 +19,10 @@ export default function CheckoutPage() {
   const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [placed, setPlaced] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("cod");
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -51,9 +54,54 @@ export default function CheckoutPage() {
   const impactCount = items.reduce((sum, item) => sum + item.quantity * 2, 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPlaced(true);
+    setSubmitError("");
+
+    if (items.length === 0) {
+      setSubmitError(t("emptyCartError"));
+      return;
+    }
+
+    const formData = new FormData(event.currentTarget);
+    const value = (name: string) => String(formData.get(name) ?? "").trim();
+
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: {
+            firstName: value("firstName"),
+            lastName: value("lastName"),
+            email: value("email"),
+            phone: value("phone"),
+          },
+          shippingAddress: {
+            address: value("address"),
+            area: value("area"),
+            city: value("city"),
+            postalCode: value("postalCode"),
+            notes: value("notes"),
+          },
+          paymentMethod,
+          items: items.map((item) => ({ id: item.id, quantity: item.quantity })),
+          locale,
+        }),
+      });
+
+      const result = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        throw new Error(result.error || t("orderError"));
+      }
+
+      setPlaced(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : t("orderError"));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -106,6 +154,7 @@ export default function CheckoutPage() {
                         <Label htmlFor="firstName">{t("firstName")}</Label>
                         <Input
                           id="firstName"
+                          name="firstName"
                           required
                           placeholder={t("firstNamePlaceholder")}
                         />
@@ -114,6 +163,7 @@ export default function CheckoutPage() {
                         <Label htmlFor="lastName">{t("lastName")}</Label>
                         <Input
                           id="lastName"
+                          name="lastName"
                           required
                           placeholder={t("lastNamePlaceholder")}
                         />
@@ -123,6 +173,7 @@ export default function CheckoutPage() {
                       <Label htmlFor="email">{t("email")}</Label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         required
                         placeholder={t("emailPlaceholder")}
@@ -132,6 +183,7 @@ export default function CheckoutPage() {
                       <Label htmlFor="phone">{t("phone")}</Label>
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
                         placeholder={t("phonePlaceholder")}
                       />
@@ -148,31 +200,35 @@ export default function CheckoutPage() {
                       <Label htmlFor="address">{t("address")}</Label>
                       <Input
                         id="address"
+                        name="address"
                         required
                         placeholder={t("addressPlaceholder")}
                       />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div className="space-y-2 sm:col-span-1">
-                        <Label htmlFor="city">{t("city")}</Label>
+                        <Label htmlFor="area">{t("area")}</Label>
                         <Input
-                          id="city"
+                          id="area"
+                          name="area"
                           required
-                          placeholder={t("cityPlaceholder")}
+                          placeholder={t("areaPlaceholder")}
                         />
                       </div>
                       <div className="space-y-2 sm:col-span-1">
-                        <Label htmlFor="state">{t("state")}</Label>
+                        <Label htmlFor="city">{t("city")}</Label>
                         <Input
-                          id="state"
+                          id="city"
+                          name="city"
                           required
-                          placeholder={t("statePlaceholder")}
+                          placeholder={t("cityPlaceholder")}
                         />
                       </div>
                       <div className="space-y-2 sm:col-span-1">
                         <Label htmlFor="postalCode">{t("postalCode")}</Label>
                         <Input
                           id="postalCode"
+                          name="postalCode"
                           required
                           placeholder={t("postalCodePlaceholder")}
                         />
@@ -182,6 +238,7 @@ export default function CheckoutPage() {
                       <Label htmlFor="notes">{t("notes")}</Label>
                       <Textarea
                         id="notes"
+                        name="notes"
                         placeholder={t("notesPlaceholder")}
                       />
                     </div>
@@ -190,36 +247,63 @@ export default function CheckoutPage() {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>{t("paymentTitle")}</CardTitle>
+                    <CardTitle>{t("paymentMethodTitle")}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="cardName">{t("cardName")}</Label>
-                      <Input
-                        id="cardName"
-                        required
-                        placeholder={t("cardNamePlaceholder")}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="cardNumber">{t("cardNumber")}</Label>
-                      <Input
-                        id="cardNumber"
-                        inputMode="numeric"
-                        required
-                        placeholder="1234 1234 1234 1234"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="expiry">{t("expiry")}</Label>
-                        <Input id="expiry" required placeholder="MM/YY" />
+                    <RadioGroup
+                      value={paymentMethod}
+                      onValueChange={setPaymentMethod}
+                      aria-label={t("paymentMethodTitle")}
+                    >
+                      <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 transition-colors hover:bg-muted/50">
+                        <RadioGroupItem value="cod" id="cod" className="mt-1" />
+                        <span className="flex items-start gap-3">
+                          <Banknote className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                          <span>
+                            <span className="block font-semibold">{t("cod")}</span>
+                            <span className="block text-sm text-muted-foreground">
+                              {t("codDescription")}
+                            </span>
+                          </span>
+                        </span>
+                      </label>
+                      <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 transition-colors hover:bg-muted/50">
+                        <RadioGroupItem value="bank" id="bank" className="mt-1" />
+                        <span className="flex items-start gap-3">
+                          <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                          <span>
+                            <span className="block font-semibold">{t("bankTransfer")}</span>
+                            <span className="block text-sm text-muted-foreground">
+                              {t("bankTransferDescription")}
+                            </span>
+                          </span>
+                        </span>
+                      </label>
+                    </RadioGroup>
+
+                    {paymentMethod === "bank" && (
+                      <div className="space-y-4 rounded-lg bg-muted/50 p-4 text-sm">
+                        <p className="font-medium text-foreground">{t("bankInstructions")}</p>
+                        <div className="space-y-3">
+                          {/* <div>
+                            <p className="font-semibold">{t("accountTitle")}: ARPAN</p>
+                            <p className="text-muted-foreground">
+                              {t("accountNumber")}: 1501070005442
+                            </p>
+                          </div> */}
+                          <div>
+                            <p className="font-semibold">{t("accountTitle")}: Md Fahim Islam</p>
+                            <p className="text-muted-foreground">
+                              {t("accountNumber")}: 1511070001992
+                            </p>
+                          </div>
+                        </div>
+                        <div className="border-t border-border pt-3 text-muted-foreground">
+                          <p>{t("bankName")}: Eastern Bank PLC</p>
+                          <p>{t("branch")}: Narayanganj SME/Agri branch</p>
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="cvc">{t("cvc")}</Label>
-                        <Input id="cvc" required placeholder="123" />
-                      </div>
-                    </div>
+                    )}
                   </CardContent>
                 </Card>
               </div>
@@ -282,7 +366,7 @@ export default function CheckoutPage() {
                   <CardContent className="pt-6 space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Lock className="w-4 h-4 text-foreground" />
-                      <span>{t("securePayment")}</span>
+                      <span>{t("paymentProtection")}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Truck className="w-4 h-4 text-foreground" />
@@ -294,8 +378,18 @@ export default function CheckoutPage() {
                     </div>
                   </CardContent>
                 </Card>
-                <Button type="submit" size="lg" className="w-full sm:w-auto">
-                  {t("placeOrder")}
+                {submitError && (
+                  <p className="text-sm font-medium text-destructive" role="alert">
+                    {submitError}
+                  </p>
+                )}
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  disabled={submitting}
+                >
+                  {submitting ? t("sendingOrder") : t("placeOrder")}
                 </Button>
               </div>
             </div>
