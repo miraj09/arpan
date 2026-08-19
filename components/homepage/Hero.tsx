@@ -87,7 +87,7 @@ export default function Hero({
 
           {/* Right: floating product showcase */}
           <div className="relative space-y-6">
-            <div className="grid grid-cols-2 gap-4 relative">
+            <div className="grid grid-cols-2 gap-4">
               {heroProducts.map((product, i) => (
                 <div
                   key={product.id}
@@ -147,26 +147,25 @@ export default function Hero({
                   </div>
                 </div>
               ))}
-              
-              {/* Floating impact card */}
-              <div className="absolute bottom-8 right-12 bg-card border border-border shadow-2xl rounded-2xl p-4 w-56">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center">
-                    <Heart className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-xs font-bold">{t("impactTitle")}</span>
+            </div>
+
+            <div className="bg-card border border-border shadow-2xl rounded-2xl p-4 w-56 ml-auto">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-primary" />
                 </div>
-                <p className="text-3xl font-black text-primary">247</p>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {t("impactSubtitle")}
-                </p>
-                <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full w-3/4 bg-primary rounded-full" />
-                </div>
-                <p className="text-[10px] text-muted-foreground mt-1">
-                  {t("impactGoal")}
-                </p>
+                <span className="text-xs font-bold">{t("impactTitle")}</span>
               </div>
+              <p className="text-3xl font-black text-primary">247</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {t("impactSubtitle")}
+              </p>
+              <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
+                <div className="h-full w-3/4 bg-primary rounded-full" />
+              </div>
+              <p className="text-[10px] text-muted-foreground mt-1">
+                {t("impactGoal")}
+              </p>
             </div>
           </div>
         </div>

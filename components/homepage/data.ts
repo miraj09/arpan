@@ -54,6 +54,20 @@ export const PRODUCTS: Product[] = [
     gradient: "from-secondary to-primary/15",
     impact: "Prenatal vitamins for 3 mothers",
   },
+  {
+    id: 4,
+    name: "Hand-Crafted Cat",
+    price: 1100,
+    category: "home",
+    rating: 4.7,
+    reviews: 19,
+    image: "/arpan-hand-stitch/cat.jpg",
+    images: [
+      "/arpan-hand-stitch/cat.jpg",
+    ],
+    gradient: "from-primary/25 to-accent/35",
+    impact: "Funds 2 medical consultations",
+  }
 ];
 
 // key maps to a translation key in messages/*.json → Categories.*

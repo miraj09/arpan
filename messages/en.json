@@ -26,6 +26,8 @@
     "empty": "Your cart is empty",
     "continueShopping": "Continue shopping →",
     "remove": "Remove",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
     "total": "Total",
     "impact": "Your order funds healthcare for {count}+ people",
     "checkout": "Checkout"

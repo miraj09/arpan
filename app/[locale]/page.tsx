@@ -67,6 +67,8 @@ export default function HomePage() {
   };
 
   const removeFromCart = (id: number) => setCart((prev) => prev.filter((i) => i.id !== id));
+  const updateCartQuantity = (id: number, quantity: number) =>
+    setCart((prev) => prev.map((item) => item.id === id ? { ...item, quantity } : item));
   const toggleWishlist = (id: number) =>
     setWishlist((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
 
@@ -78,7 +80,8 @@ export default function HomePage() {
       <AnnouncementBar />
       <Navbar totalItems={totalItems} onCartOpen={() => setCartOpen(true)} scrolled={scrolled} />
       <CartDrawer cart={cart} isOpen={cartOpen} onClose={() => setCartOpen(false)}
-        onRemove={removeFromCart} totalItems={totalItems} totalPrice={totalPrice} />
+        onRemove={removeFromCart} onQuantityChange={updateCartQuantity}
+        totalItems={totalItems} totalPrice={totalPrice} />
       <main>
         <Hero wishlist={wishlist} addedId={addedId} onAddToCart={addToCart} onToggleWishlist={toggleWishlist} />
         <StatsBar />

@@ -85,4 +85,26 @@ export const PRODUCT_DETAILS: Record<number, ProductDetail> = {
       { name: "Kamal R.", location: "Sylhet, BD", rating: 4, date: "March 2026", text: "Beautiful kurta. Slightly heavier fabric than expected but that adds to the premium feel. Very happy with the purchase.", verified: false },
     ],
   },
+  4: {
+    description:
+      "A charming hand-crafted cat sculpture made from tightly woven natural fibres and finished with expressive stitched details. Its warm blush, cream, and charcoal tones bring a playful artisan accent to a shelf, bedside table, or reading nook. Each piece is shaped and finished by hand, so small variations make every cat uniquely yours while supporting dignified livelihoods through UHDP.",
+    features: [
+      "Hand-crafted woven fibre sculpture",
+      "Soft blush, cream, and charcoal colour palette",
+      "Decorative piece for shelves, desks, and bedside tables",
+      "Hand-finished details make every piece subtly unique",
+      "Supports UHDP artisan livelihood programs",
+    ],
+    specs: [
+      { label: "Material", value: "Woven natural fibre with textile details" },
+      { label: "Finish", value: "Hand-shaped and hand-finished" },
+      { label: "Use", value: "Decorative home accent" },
+      { label: "Care", value: "Dust gently with a soft, dry cloth" },
+      { label: "Origin", value: "Narayanganj, Bangladesh — UHDP Foundation" },
+    ],
+    reviews: [
+      { name: "Nadia R.", location: "Dhaka, BD", rating: 5, date: "May 2026", text: "The stitching and tiny face details are so lovely. It adds personality to my bookshelf without taking up much space.", verified: true },
+      { name: "Maya S.", location: "Chittagong, BD", rating: 5, date: "April 2026", text: "A beautiful handmade gift. The cat looks even more charming in person and feels sturdy for a small decorative piece.", verified: true },
+    ],
+  },
 };

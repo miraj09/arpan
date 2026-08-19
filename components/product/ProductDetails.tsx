@@ -109,6 +109,9 @@ export default function ProductDetails({ product, related }: Props) {
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
+  const updateCartQuantity = (id: number, quantity: number) =>
+    setCart((prev) => prev.map((item) => item.id === id ? { ...item, quantity } : item));
+
   const galleryCount = hasGallery ? galleryImages.length : OVERLAYS_LENGTH;
   const prevThumb = () => setThumb((i) => (i - 1 + galleryCount) % galleryCount);
   const nextThumb = () => setThumb((i) => (i + 1) % galleryCount);
@@ -151,6 +154,7 @@ export default function ProductDetails({ product, related }: Props) {
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
         onRemove={(id) => setCart((p) => p.filter((i) => i.id !== id))}
+        onQuantityChange={updateCartQuantity}
         totalItems={totalItems}
         totalPrice={totalPrice}
       />

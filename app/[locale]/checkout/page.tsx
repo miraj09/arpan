@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Banknote, CheckCircle2, Landmark, Lock, ShieldCheck, Truck } from "lucide-react";
+import { Banknote, CheckCircle2, Landmark, Lock, Minus, Plus, ShieldCheck, Truck } from "lucide-react";
 import Navbar from "@/components/homepage/Navbar";
 import SiteFooter from "@/components/homepage/SiteFooter";
 import type { CartItem } from "@/components/homepage/types";
@@ -53,6 +53,14 @@ export default function CheckoutPage() {
   const total = subtotal + shipping;
   const impactCount = items.reduce((sum, item) => sum + item.quantity * 2, 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+
+  const updateCartQuantity = (id: number, quantity: number) => {
+    setCart((previous) => {
+      const next = previous.map((item) => item.id === id ? { ...item, quantity } : item);
+      localStorage.setItem("cart", JSON.stringify(next));
+      return next;
+    });
+  };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -327,6 +335,25 @@ export default function CheckoutPage() {
                             <p className="text-xs text-muted-foreground">
                               {t("quantity", { qty: item.quantity })}
                             </p>
+                            <div className="mt-2 inline-flex items-center rounded-lg border border-border bg-muted">
+                              <button
+                                type="button"
+                                aria-label={t("decreaseQuantity")}
+                                onClick={() => updateCartQuantity(item.id, Math.max(1, item.quantity - 1))}
+                                className="p-1.5 hover:bg-border transition-colors"
+                              >
+                                <Minus className="h-3.5 w-3.5" />
+                              </button>
+                              <span className="w-8 text-center text-xs font-bold">{item.quantity}</span>
+                              <button
+                                type="button"
+                                aria-label={t("increaseQuantity")}
+                                onClick={() => updateCartQuantity(item.id, item.quantity + 1)}
+                                className="p-1.5 hover:bg-border transition-colors"
+                              >
+                                <Plus className="h-3.5 w-3.5" />
+                              </button>
+                            </div>
                           </div>
                           <p className="text-sm font-semibold">
                             {formatPrice(item.price * item.quantity, locale)}

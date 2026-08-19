@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
-import { X, ShoppingCart } from "lucide-react";
+import { Minus, Plus, X, ShoppingCart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { CartItem } from "./types";
 import ProductImage from "@/components/product/ProductImage";
@@ -11,6 +11,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onRemove: (id: number) => void;
+  onQuantityChange: (id: number, quantity: number) => void;
   totalItems: number;
   totalPrice: number;
 }
@@ -20,6 +21,7 @@ export default function CartDrawer({
   isOpen,
   onClose,
   onRemove,
+  onQuantityChange,
   totalItems,
   totalPrice,
 }: Props) {
@@ -73,17 +75,35 @@ export default function CartDrawer({
                   <p className="text-xs text-primary mt-0.5">
                     🌿 {item.impact}
                   </p>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="font-bold text-sm">
-                      BDT {item.price} × {item.quantity}
-                    </span>
+                  <div className="flex items-center justify-between gap-2 mt-2">
+                    <div className="flex items-center rounded-lg border border-border bg-muted">
+                      <button
+                        type="button"
+                        aria-label={t("decreaseQuantity")}
+                        onClick={() => onQuantityChange(item.id, Math.max(1, item.quantity - 1))}
+                        className="p-1.5 hover:bg-border transition-colors"
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="w-7 text-center text-xs font-bold">{item.quantity}</span>
+                      <button
+                        type="button"
+                        aria-label={t("increaseQuantity")}
+                        onClick={() => onQuantityChange(item.id, item.quantity + 1)}
+                        className="p-1.5 hover:bg-border transition-colors"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                     <button
+                      type="button"
                       onClick={() => onRemove(item.id)}
                       className="text-xs text-muted-foreground hover:text-destructive transition-colors"
                     >
                       {t("remove")}
                     </button>
                   </div>
+                  <p className="mt-1 text-xs font-bold">{formatPrice(item.price * item.quantity, locale)}</p>
                 </div>
               </div>
             ))
